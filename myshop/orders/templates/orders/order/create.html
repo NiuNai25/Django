@@ -1,0 +1,52 @@
+{% extends "shop/base.html" %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+
+<div class="order_page" style= "display:{% if cart|length == 0 %}flex{% else %}none{% endif %};" ></div>
+<div class="order_page" style= "display:{% if cart|length > 0 %}flex{% else %}none{% endif %};" >
+
+    <div style="min-width: 400px;border: 1px solid #f1ecec;
+    border-radius: 30px;
+    box-shadow: -5px 5px 5px lightgrey;">
+    <div class="order_info_side">
+   
+        <div style="width: 100%;font-size: 20px;font-weight: 700;margin: 0 0 3% 0px;">Ваш заказ</div>
+
+            {% for item in cart %}
+            <div  style="display: flex;">
+            <img src="{{item.product.image.url }}" style="width: 30%; height: 70%; border-radius: 30px;"> 
+                <div style="margin: 5% 0 0 2%;display: flex;height: 50px;width: 100%;">
+                    {{ item.quantity }} x {{ item.product.name }}
+                    <span style="margin-left: 20%;">{{ item.total_price }}<i class="fa fa-rub" aria-hidden="true"></i></span>
+                </div>
+            </div>
+            {% endfor %}
+
+        <div style="font-size: 20px;font-weight: 700;margin: 10% 0% 0% 0px;">Итого: {{ cart.get_total_price }}<i class="fa fa-rub" aria-hidden="true"></i></div>
+
+</div>
+</div>
+<div>
+<div style="    border: 1px solid #f1ecec;
+border-radius: 30px;
+height: 200px;
+background: #efefef;
+box-shadow: 0px 5px 5px lightgrey;">
+    <form action="." method="post" class="order-form">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <div style="margin: 25px 0px 0 0%; display: flex;">
+            <input type="submit" value="Оформить заказ" style="    width: 580px;
+            border: none;
+            background: black;
+            color: WHITE;
+            height: 50px;
+            border-radius: 20px;"></div>
+    </form>
+</div>
+
+</div>
+</div>    
+{% endblock %}

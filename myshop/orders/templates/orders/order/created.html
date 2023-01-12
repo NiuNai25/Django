@@ -1,0 +1,10 @@
+{% extends "shop/base.html" %}
+
+{% block title %}Thank you{% endblock %}
+
+{% block content %}
+ <div style="display: flex; flex-direction: column;">
+    <h1>Благодарим за заказ</h1>
+    <p>Заказ успешно оформлен. Номер заказа <strong>{{ order.id }}</strong>.</p>
+</div>    
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}
+    Your shopping cart
+{% endblock %}
+{% block content %}
+
+
+
+<div class="cart_body" style="display: flex;    flex-direction: column;    margin: 0 0 0 10%;">
+<div class="order_body" style= "display:{% if cart|length == 0 %}flex{% else %}none{% endif %};flex-direction: row;margin-top: 10%;position: initial;" > Корзина пуста. Вернуться к &nbsp; <a href="/" class="text_link" style="text-decoration: underline;color: #f73d34;">покупкам?</a></div>
+<div class="order_body"  style= "display:{% if cart|length > 0 %}flex{% else %}none{% endif %};" >
+<div class="order_table">
+
+
+    <div class="cart" style="width: 100%;">
+  
+        <div class = "table_header">
+            <div class="row"></div>
+            <div class="row">Наименование</div>
+            <div class="row">Количество</div>
+            <div class="row">Сумма</div>
+            <div class="row">Цена</div>
+            <div class="row"></div>
+  
+    </div>
+
+
+        <div style="text-align: center;     margin: 5% 0 5% 0;">
+        {% for item in cart %}
+            {% with product=item.product %}
+ <div class="element_row">
+                    <div class="order_row">
+                        <a href="{{ product.get_absolute_url }}">
+                            <img         style="width:50%; height: 80%; border-radius: 30px;"  src="
+                                {% if product.image %}
+                                    {{ product.image.url }}
+                                {% else %}
+                                    {% static "img/no_image.png" %}
+                                {% endif %}">
+                        </a>
+                    </div>
+        
+             
+                    <div class="order_row">{{ product.name }}</div>
+                           
+                        <form  action="{% url "cart:cart_add" product.id %}" method="post" style="display: flex;width:200px;left: 5%;position: relative;">
+
+
+                        <div class = 'add_form'>
+                            <div class = "add_arrows{{product.id}}" style="cursor: pointer;" onclick="dec{{product.id}}()">-</div> 
+                                                        {{item.update_quantity_form}}{% csrf_token %}
+                            <div class = "add_arrows{{product.id}}" style="cursor: pointer;" onclick="inc{{product.id}}()">+</div>
+       
+
+                        </div>  
+
+
+                        <div class="input-icons" type="submit">   </div>
+                            
+                           
+                            <button type="submit" value="" class = "submit_btn" > <i class="fa fa-chevron-circle-down" aria-hidden="true" type="submit" style = '    font-size: 20px;
+                                color: grey;'></i></button>
+           
+                        </form>
+           
+                  
+                    <div class="order_row">{{ item.price }}<i class="fa fa-rub" aria-hidden="true"></i></div>
+                    <div class="order_row">{{ item.total_price }}<i class="fa fa-rub" aria-hidden="true"></i></div>
+                    <div class="order_row"><a href="{% url "cart:cart_remove" product.id%}" style="cursor: pointer; color: black;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></div>
+                </div>
+
+                <script>
+                    function inc{{product.id}}() {
+                        let number = document.querySelector('.add_arrows{{product.id}}+[name="quantity"]');
+                        number.value = parseInt(number.value) + 1;
+                    }
+                
+                    function dec{{product.id}}() {
+                        let number = document.querySelector('.add_arrows{{product.id}}+[name="quantity"]');
+                        if (parseInt(number.value) >= 1) {
+                            number.value = parseInt(number.value) - 1;
+                        }
+                    }
+                    
+                </script>
+            {% endwith %}
+        {% endfor %}
+
+            <div class="total">Итого {{ cart.get_total_price }}<i class="fa fa-rub" aria-hidden="true"></i></div>
+        
+    </div>
+
+
+
+    </div>
+</div>
+<div class="order_actions">
+   <div class="button"><a href="{% url "shop:product_list" %}" class="bottom_text" style="margin: 5% 0% 0% 2%;" >Продолжить покупки</a></div>
+   <div class="button_light"><a href="{% url "orders:order_create" %}" class="bottom_text"  style="margin: 5% 0% 0% 10%;">Оформить заказ</a></div>
+</div>
+</div>
+<div class="product_box" style="position: relative;left: 3%;margin-top: 5%;" >
+    <div class="product_box_name" style ="font-weight: bold;">ВАМ МОЖЕТ ПОНРАВИТЬСЯ</div>
+    <div class="product" >  
+        {% for p in products %}
+        {% if p.id in option %}
+     <div class="product_list"> 
+        <div id="item" class="item">
+            <a href="{{ p.get_absolute_url }}">
+                <img src="{% if p.image %}{{ p.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" 
+                     style="width: 100%; height: 300px; border-radius: 30px;"></a>
+            <div class="text_body">
+            <div class="price">{{ p.price }}<i class="fa fa-rub" aria-hidden="true"></i> </div>                             
+            <div href="{{ p.get_absolute_url }}" style="font-size: 15px; cursor: pointer;">{{ p.name }}</div>
+            <div class="product_discritpion"> {{ p.description|linebreaks }}</div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    </div>
+
+</div>
+</div>
+{% endblock %}
