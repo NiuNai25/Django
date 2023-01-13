@@ -4,8 +4,8 @@ Django
 
 
 
-*Запрос API GET к сущностям  ***product*** ***category*** ***orderitem*** ***order***
-```
+Запрос API GET к сущностям  ***product*** ***category*** ***orderitem*** ***order***
+``` python
 import requests
 from requests.structures import CaseInsensitiveDict
 from requests.auth import HTTPBasicAuth
