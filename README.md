@@ -3,7 +3,7 @@ Django
 Проект веб приложения ИНТЕРНЕТ - МАГАЗИН
 
 Product
-![image](![image](https://user-images.githubusercontent.com/117024752/212306277-b1c602d7-532c-4f5f-8ca9-4c26a2cb0537.png))
+![image](![image](https://user-images.githubusercontent.com/117024752/212306277-b1c602d7-532c-4f5f-8ca9-4c26a2cb0537.png)
 
 Product details
 
