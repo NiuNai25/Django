@@ -1,0 +1,6 @@
+ID,Имя,Фамилия,email,Адрес,Индекс,Город,created,updated,paid
+25,DARIA,Rytova,niunai1992@gmail.com,"Г.Москва, 61",109388,Москва,13/01/2023,13/01/2023,False
+24,DARIA,Rytova,niunai1992@gmail.com,"Г.Москва, 61",109388,Москва,12/01/2023,12/01/2023,False
+23,DARIA,Rytova,niunai1992@gmail.com,"Г.Москва, 61",109388,Москва,12/01/2023,12/01/2023,False
+22,This field is required.,This field is required.,,,,,12/01/2023,12/01/2023,False
+21,This field is required.,This field is required.,,,,,12/01/2023,12/01/2023,False
