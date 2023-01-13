@@ -12,7 +12,7 @@
 2. [Структура магазина](STUCTURE.md)
 4. [Структура кабинета администратора](ADMIN.md)
 3. [Интрефейс работы с API](API.md)
-4. [Тесторование API pytest](pytest.md)
-5. [Тесторование order](test.md)
+4. [Тестирование API pytest](pytest.md)
+5. [Тестирование order](test.md)
 </p>
 
