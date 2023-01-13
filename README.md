@@ -46,6 +46,7 @@ print(resp.text)
 
 3.POST к сущностям ***category***
 
+``` python
 import requests
 from requests.structures import CaseInsensitiveDict
 from requests.auth import HTTPBasicAuth
@@ -64,9 +65,9 @@ data = """
 resp = requests.post(url, auth = basic,  headers= headers, data = data)
 print(resp.status_code)
 print(resp.text)
-
+```
 4.DELETE к сущностям ***order, category***
-
+```python
 import requests
 from requests.structures import CaseInsensitiveDict
 from requests.auth import HTTPBasicAuth
@@ -82,4 +83,4 @@ resp = requests.delete(url, auth = basic,  headers= headers)
 
 print(resp.status_code)
 print(resp.text)
-
+```
